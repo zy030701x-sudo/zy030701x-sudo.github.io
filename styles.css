@@ -1,0 +1,45 @@
+body { 
+        background-color: white; 
+        font-family: Arial, sans-serif; 
+        margin: 40px; 
+        color: darkgreen; 
+      } 
+ 
+      h1 { 
+        color: coral; 
+        text-align: center; 
+        font-size: 42px; 
+        border-bottom: 4px solid coral; 
+        padding-bottom: 10px; 
+      } 
+ 
+      h2 { 
+        color: white; 
+        background-color: steelblue; 
+        padding: 10px; 
+        border-left: 6px solid goldenrod; 
+      } 
+ 
+      p { 
+        font-size: 18px; 
+        line-height: 1.6; 
+        background-color: white; 
+        padding: 15px; 
+        border: 1px solid goldenrod; 
+      } 
+ 
+      ul, 
+      ol { 
+        background-color: white; 
+        padding: 20px 20px 20px 40px; 
+        border: 1px solid goldenrod; 
+      } 
+ 
+      li { 
+        font-size: 18px; 
+        line-height: 1.6; 
+      } 
+
+      .goals-hidden {
+    display: none;
+}
