@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5" style="max-width: 400px;">
+        <div class="card p-4 shadow-sm">
+            <h5 class="mb-4">Login</h5>
+
+            <form id="login-form">
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username"
+                           class="form-control"
+                           placeholder="Enter username">
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password"
+                           class="form-control"
+                           placeholder="Enter password">
+                </div>
+
+                <button type="submit" id="btn-login"
+                        class="btn btn-primary w-100">
+                    Login
+                </button>
+
+                <p id="result" class="mt-3 mb-0"></p>
+            </form>
+        </div>
+    </div>
+
+    
+        <script>
+    const VALID_USERNAME = 'alice123';
+    const VALID_PASSWORD = 'pass42';
+
+    const usernameInput = document.querySelector('#username');
+    const passwordInput = document.querySelector('#password');
+    const result = document.querySelector('#result');
+
+    const showError = (message) => {
+        result.textContent = message;
+        result.className = 'mt-3 mb-0 fw-semibold text-danger';
+    };
+
+    const showSuccess = (message) => {
+        result.textContent = message;
+        result.className = 'mt-3 mb-0 fw-semibold text-success';
+    };
+
+    const countDigits = (str) => {
+        let count = 0;
+
+        for (const char of str) {
+            if (char >= '0' && char <= '9') {
+                count = count + 1;
+            }
+        }
+
+        return count;
+    };
+
+    const countLetters = (str) => {
+        let count = 0;
+
+        for (const char of str) {
+            const lower = char.toLowerCase();
+
+            if (lower >= 'a' && lower <= 'z') {
+                count = count + 1;
+            }
+        }
+
+        return count;
+    };
+
+    const login = (event) => {
+        event.preventDefault();
+
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        if (username === '') {
+            showError('Please enter a username.');
+            return;
+        }
+
+        if (username.length <= 5) {
+            showError('Username must be more than 5 characters.');
+            return;
+        }
+
+        if (password === '') {
+            showError('Please enter a password.');
+            return;
+        }
+
+        for (const char of passwordInput.value) {
+            if (char === ' ') {
+                showError('Password cannot contain spaces.');
+                return;
+            }
+        }
+
+        if (countLetters(password) < 2) {
+            showError('Password must contain at least 2 letters.');
+            return;
+        }
+
+        if (countDigits(password) < 2) {
+            showError('Password must contain at least 2 digits.');
+            return;
+        }
+
+        if (username === VALID_USERNAME && password === VALID_PASSWORD) {
+            showSuccess(`Welcome, ${username}!`);
+        } else {
+            showError('Username or password is incorrect.');
+        }
+    };
+
+    document.querySelector('#login-form').addEventListener('submit', login);
+</script>
+    
+</body>
+</html>
